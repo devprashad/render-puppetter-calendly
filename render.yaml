@@ -3,7 +3,7 @@ services:
     name: puppeteer-render-test
     env: node
     plan: free
-    buildCommand: npm install && npm run postinstall
+    buildCommand: npm install
     startCommand: node index.js
     envVars:
       - key: NODE_ENV

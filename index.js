@@ -6,8 +6,7 @@ const app = express();
 app.get("/", async (req, res) => {
   try {
     const browser = await puppeteer.launch({
-      headless: 'new',
-      executablePath: puppeteer.executablePath(),
+      headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
 
@@ -17,14 +16,14 @@ app.get("/", async (req, res) => {
 
     await browser.close();
 
-    res.send("✅ Screenshot of google.com taken successfully!");
+    res.send("✅ Screenshot of Google taken.");
   } catch (err) {
-    console.error(err);
-    res.status(500).send("❌ Error launching Puppeteer");
+    console.error("Puppeteer error:", err);
+    res.status(500).send("❌ Puppeteer error.");
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log("Server running on port", PORT);
 });
