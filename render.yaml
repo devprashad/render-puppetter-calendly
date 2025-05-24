@@ -1,7 +1,11 @@
 services:
   - type: web
-    name: puppeteer-test
+    name: puppeteer-render-test
     env: node
     plan: free
-    buildCommand: "npm install"
-    startCommand: "npm start"
+    buildCommand: npm install && npm run postinstall
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
